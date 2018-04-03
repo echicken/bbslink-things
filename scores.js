@@ -166,6 +166,9 @@ if (typeof argv[0] != 'undefined') {
 		tree.getcmd(i);
 	}
 
+	tree.close();
+	frame.close();
+
 	bbs.sys_status = sys_stat;
 
 }
