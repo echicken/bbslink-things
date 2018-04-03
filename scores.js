@@ -2,6 +2,7 @@ load('sbbsdefs.js');
 load('http.js');
 load('frame.js');
 load('tree.js');
+load('scrollbar.js');
 
 function get_settings() {
 	const f = new File(js.exec_dir + 'settings.ini');
@@ -145,10 +146,6 @@ if (typeof argv[0] != 'undefined') {
 	frame.putmsg(ascii(180) + "\1h\1wBBSLink Scores" + ascii(195));
 	frame.gotoxy(frame.width - 20, frame.x + frame.height - 1);
 	frame.putmsg(ascii(180) + "\1h\1wPress Q to quit" + ascii(195));
-	frame.open();
-	if (typeof header_frame !=  'undefined') {
-		header_frame.load(settings.header);
-	}
 
 	const tree = new Tree(tree_frame);
 	tree.colors.fg = WHITE;
@@ -167,11 +164,20 @@ if (typeof argv[0] != 'undefined') {
 			);
 		}
 	);
+
+	const scrollbar = new ScrollBar(tree);
+	frame.open();
+	if (typeof header_frame !=  'undefined') {
+		header_frame.load(settings.header);
+	}
 	tree.open();
 
 	var i;
 	while (i !== 'Q') {
-		frame.cycle();
+		if (frame.cycle()) {
+			console.gotoxy(console.screen_columns, console.screen_rows);
+			scrollbar.cycle();
+		}
 		i = console.getkey().toUpperCase();
 		tree.getcmd(i);
 	}
