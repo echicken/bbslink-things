@@ -58,7 +58,6 @@ function display_ansi(code, base_url, ttl) {
 	console.clear(BG_BLACK|LIGHTGRAY);
 	console.putmsg(ans);
 	console.crlf();
-	console.putmsg(bbs.text(563));
 	console.pause();
 }
 
