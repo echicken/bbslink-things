@@ -147,6 +147,12 @@ if (typeof argv[0] != 'undefined') {
 	}
 
 	const tree = new Tree(tree_frame);
+	tree.colors.fg = WHITE;
+	tree.colors.bg = BG_BLACK;
+	tree.colors.lfg = WHITE;
+	tree.colors.lbg = BG_CYAN;
+	tree.colors.sfg = WHITE;
+	tree.colors.sbg = BG_BLUE;
 	Object.keys(settings.games).forEach(
 		function (e) {
 			tree.addItem(
