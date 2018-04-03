@@ -56,6 +56,8 @@ function display_ansi(code, base_url, ttl) {
 	if (!ans) return;
 	console.clear(BG_BLACK|LIGHTGRAY);
 	console.putmsg(ans);
+	console.crlf();
+	console.putmsg(bbs.text(563));
 	console.pause();
 }
 
@@ -141,6 +143,8 @@ if (typeof argv[0] != 'undefined') {
 	frame.drawBorder([LIGHTBLUE, CYAN, LIGHTCYAN, WHITE]);
 	frame.gotoxy(frame.width - 20, 1);
 	frame.putmsg(ascii(180) + "\1h\1wBBSLink Scores" + ascii(195));
+	frame.gotoxy(frame.width - 20, frame.x + frame.height - 1);
+	frame.putmsg(ascii(180) + "\1h\1wPress Q to quit" + ascii(195));
 	frame.open();
 	if (typeof header_frame !=  'undefined') {
 		header_frame.load(settings.header);
